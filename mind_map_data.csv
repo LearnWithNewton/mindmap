@@ -1,0 +1,84 @@
+Node1,Node2
+Artificial Intelligence,Machine Learning
+Artificial Intelligence,Deep Learning
+Machine Learning,Supervised Learning
+Machine Learning,Unsupervised Learning
+Machine Learning,Reinforcement Learning
+Supervised Learning,Classification
+Supervised Learning,Regression
+Unsupervised Learning,Clustering
+Unsupervised Learning,Dimensionality Reduction
+Deep Learning,Neural Networks
+Neural Networks,Feedforward Neural Networks
+Neural Networks,Backpropagation
+Neural Networks,Activation Functions
+Neural Networks,Loss Functions
+Neural Networks,Convolutional Neural Networks (CNNs)
+Neural Networks,Recurrent Neural Networks (RNNs)
+Recurrent Neural Networks,LSTM
+Recurrent Neural Networks,GRU
+Convolutional Neural Networks,Pooling Layers
+Convolutional Neural Networks,Convolutional Layers
+Deep Learning,Optimization Algorithms
+Optimization Algorithms,Gradient Descent
+Optimization Algorithms,Adam
+Deep Learning,Transfer Learning
+Deep Learning,Autoencoders
+Deep Learning,Generative Adversarial Networks (GANs)
+Deep Learning,Self-Supervised Learning
+Transfer Learning,Pre-trained Models
+Self-Supervised Learning,Contrastive Learning
+Autoencoders,Variational Autoencoders (VAEs)
+Generative Adversarial Networks (GANs),Discriminator
+Generative Adversarial Networks (GANs),Generator
+Artificial Intelligence,Natural Language Processing (NLP)
+Natural Language Processing,Tokenization
+Natural Language Processing,Word Embeddings
+Natural Language Processing,Word2Vec
+Natural Language Processing,GloVe
+Natural Language Processing,Transformers
+Transformers,Attention Mechanism
+Transformers,Self-Attention
+Transformers,Multi-Head Attention
+Transformers,Positional Encoding
+Transformers,BERT
+Transformers,GPT
+Transformers,T5
+Transformers,Vision Transformers (ViT)
+BERT,Fine-Tuning
+GPT,Language Models
+Language Models,Large Language Models (LLMs)
+Large Language Models (LLMs),Scaling Laws
+Large Language Models (LLMs),Zero-Shot Learning
+Large Language Models (LLMs),Few-Shot Learning
+Large Language Models (LLMs),Prompt Engineering
+LLMs,Instruction Tuning
+LLMs,Inference Techniques
+Large Language Models (LLMs),ChatGPT
+Large Language Models (LLMs),Multimodal Models
+Multimodal Models,CLIP
+Multimodal Models,DALL-E
+Multimodal Models,Visual Transformers
+Multimodal Models,Audio Transformers
+Multimodal Models,Text-to-Image Models
+Multimodal Models,Text-to-Video Models
+Multimodal Models,Text-to-Audio Models
+Artificial Intelligence,Generative AI
+Generative AI,Text Generation
+Generative AI,Image Generation
+Generative AI,Music Generation
+Generative AI,Code Generation
+Generative AI,Video Generation
+Generative AI,Diffusion Models
+Diffusion Models,Stable Diffusion
+Diffusion Models,Denoising Process
+Artificial Intelligence,Ethics in AI
+Ethics in AI,AI Bias
+Ethics in AI,Fairness in AI
+Ethics in AI,Explainability
+Ethics in AI,AI Regulations
+Artificial Intelligence,AI in Healthcare
+Artificial Intelligence,AI in Robotics
+Artificial Intelligence,AI in Education
+Artificial Intelligence,AI in Finance
+Artificial Intelligence,AI in Autonomous Systems

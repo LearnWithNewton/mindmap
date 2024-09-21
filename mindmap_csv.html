@@ -1,0 +1,155 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        
+            <script src="lib/bindings/utils.js"></script>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/dist/vis-network.min.css" integrity="sha512-WgxfT5LWjfszlPHXRmBWHkV2eceiWTOBvrKCNbdgDYTHrT2AeLCGbF4sZlZw3UMN3WtL0tGUoIAKsu8mllg/XA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/vis-network/9.1.2/dist/vis-network.min.js" integrity="sha512-LnvoEWDFrqGHlHmDD2101OrLcbsfkrzoSpvtSQtxK3RMnRV0eOkhhBN2dXHKRrUU8p2DGRTk35n4O8nWSVe1mQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            
+        
+<center>
+<h1></h1>
+</center>
+
+<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6"
+          crossorigin="anonymous"
+        />
+        <script
+          src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf"
+          crossorigin="anonymous"
+        ></script>
+
+
+        <center>
+          <h1></h1>
+        </center>
+        <style type="text/css">
+
+             #mynetwork {
+                 width: 1080px;
+                 height: 1280px;
+                 background-color: #ffffff;
+                 border: 1px solid lightgray;
+                 position: relative;
+                 float: left;
+             }
+
+             
+
+             
+
+             
+        </style>
+    </head>
+
+
+    <body>
+        <div class="card" style="width: 100%">
+            
+            
+            <div id="mynetwork" class="card-body"></div>
+        </div>
+
+        
+        
+
+        <script type="text/javascript">
+
+              // initialize global variables.
+              var edges;
+              var nodes;
+              var allNodes;
+              var allEdges;
+              var nodeColors;
+              var originalNodes;
+              var network;
+              var container;
+              var options, data;
+              var filter = {
+                  item : '',
+                  property : '',
+                  value : []
+              };
+
+              
+
+              
+
+              // This method is responsible for drawing the graph, returns the drawn network
+              function drawGraph() {
+                  var container = document.getElementById('mynetwork');
+
+                  
+
+                  // parsing and collecting nodes and edges from the python
+                  nodes = new vis.DataSet([{"color": "#97c2fc", "id": "Artificial Intelligence", "label": "Artificial Intelligence", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Machine Learning", "label": "Machine Learning", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Deep Learning", "label": "Deep Learning", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Natural Language Processing (NLP)", "label": "Natural Language Processing (NLP)", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Generative AI", "label": "Generative AI", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Ethics in AI", "label": "Ethics in AI", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "AI in Healthcare", "label": "AI in Healthcare", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "AI in Robotics", "label": "AI in Robotics", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "AI in Education", "label": "AI in Education", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "AI in Finance", "label": "AI in Finance", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "AI in Autonomous Systems", "label": "AI in Autonomous Systems", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Supervised Learning", "label": "Supervised Learning", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Unsupervised Learning", "label": "Unsupervised Learning", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Reinforcement Learning", "label": "Reinforcement Learning", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Neural Networks", "label": "Neural Networks", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Optimization Algorithms", "label": "Optimization Algorithms", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Transfer Learning", "label": "Transfer Learning", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Autoencoders", "label": "Autoencoders", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Generative Adversarial Networks (GANs)", "label": "Generative Adversarial Networks (GANs)", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Self-Supervised Learning", "label": "Self-Supervised Learning", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Classification", "label": "Classification", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Regression", "label": "Regression", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Clustering", "label": "Clustering", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Dimensionality Reduction", "label": "Dimensionality Reduction", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Feedforward Neural Networks", "label": "Feedforward Neural Networks", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Backpropagation", "label": "Backpropagation", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Activation Functions", "label": "Activation Functions", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Loss Functions", "label": "Loss Functions", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Convolutional Neural Networks (CNNs)", "label": "Convolutional Neural Networks (CNNs)", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Recurrent Neural Networks (RNNs)", "label": "Recurrent Neural Networks (RNNs)", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Recurrent Neural Networks", "label": "Recurrent Neural Networks", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "LSTM", "label": "LSTM", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "GRU", "label": "GRU", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Convolutional Neural Networks", "label": "Convolutional Neural Networks", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Pooling Layers", "label": "Pooling Layers", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Convolutional Layers", "label": "Convolutional Layers", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Gradient Descent", "label": "Gradient Descent", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Adam", "label": "Adam", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Pre-trained Models", "label": "Pre-trained Models", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Variational Autoencoders (VAEs)", "label": "Variational Autoencoders (VAEs)", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Discriminator", "label": "Discriminator", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Generator", "label": "Generator", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Contrastive Learning", "label": "Contrastive Learning", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Natural Language Processing", "label": "Natural Language Processing", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Tokenization", "label": "Tokenization", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Word Embeddings", "label": "Word Embeddings", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Word2Vec", "label": "Word2Vec", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "GloVe", "label": "GloVe", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Transformers", "label": "Transformers", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Attention Mechanism", "label": "Attention Mechanism", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Self-Attention", "label": "Self-Attention", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Multi-Head Attention", "label": "Multi-Head Attention", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Positional Encoding", "label": "Positional Encoding", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "BERT", "label": "BERT", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "GPT", "label": "GPT", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "T5", "label": "T5", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Vision Transformers (ViT)", "label": "Vision Transformers (ViT)", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Fine-Tuning", "label": "Fine-Tuning", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Language Models", "label": "Language Models", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Large Language Models (LLMs)", "label": "Large Language Models (LLMs)", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Scaling Laws", "label": "Scaling Laws", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Zero-Shot Learning", "label": "Zero-Shot Learning", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Few-Shot Learning", "label": "Few-Shot Learning", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Prompt Engineering", "label": "Prompt Engineering", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "ChatGPT", "label": "ChatGPT", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Multimodal Models", "label": "Multimodal Models", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "LLMs", "label": "LLMs", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Instruction Tuning", "label": "Instruction Tuning", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Inference Techniques", "label": "Inference Techniques", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "CLIP", "label": "CLIP", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "DALL-E", "label": "DALL-E", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Visual Transformers", "label": "Visual Transformers", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Audio Transformers", "label": "Audio Transformers", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Text-to-Image Models", "label": "Text-to-Image Models", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Text-to-Video Models", "label": "Text-to-Video Models", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Text-to-Audio Models", "label": "Text-to-Audio Models", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Text Generation", "label": "Text Generation", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Image Generation", "label": "Image Generation", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Music Generation", "label": "Music Generation", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Code Generation", "label": "Code Generation", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Video Generation", "label": "Video Generation", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Diffusion Models", "label": "Diffusion Models", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Stable Diffusion", "label": "Stable Diffusion", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Denoising Process", "label": "Denoising Process", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "AI Bias", "label": "AI Bias", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Fairness in AI", "label": "Fairness in AI", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "Explainability", "label": "Explainability", "shape": "dot", "size": 10}, {"color": "#97c2fc", "id": "AI Regulations", "label": "AI Regulations", "shape": "dot", "size": 10}]);
+                  edges = new vis.DataSet([{"arrows": "to", "from": "Artificial Intelligence", "to": "Machine Learning", "width": 1}, {"arrows": "to", "from": "Artificial Intelligence", "to": "Deep Learning", "width": 1}, {"arrows": "to", "from": "Artificial Intelligence", "to": "Natural Language Processing (NLP)", "width": 1}, {"arrows": "to", "from": "Artificial Intelligence", "to": "Generative AI", "width": 1}, {"arrows": "to", "from": "Artificial Intelligence", "to": "Ethics in AI", "width": 1}, {"arrows": "to", "from": "Artificial Intelligence", "to": "AI in Healthcare", "width": 1}, {"arrows": "to", "from": "Artificial Intelligence", "to": "AI in Robotics", "width": 1}, {"arrows": "to", "from": "Artificial Intelligence", "to": "AI in Education", "width": 1}, {"arrows": "to", "from": "Artificial Intelligence", "to": "AI in Finance", "width": 1}, {"arrows": "to", "from": "Artificial Intelligence", "to": "AI in Autonomous Systems", "width": 1}, {"arrows": "to", "from": "Machine Learning", "to": "Supervised Learning", "width": 1}, {"arrows": "to", "from": "Machine Learning", "to": "Unsupervised Learning", "width": 1}, {"arrows": "to", "from": "Machine Learning", "to": "Reinforcement Learning", "width": 1}, {"arrows": "to", "from": "Deep Learning", "to": "Neural Networks", "width": 1}, {"arrows": "to", "from": "Deep Learning", "to": "Optimization Algorithms", "width": 1}, {"arrows": "to", "from": "Deep Learning", "to": "Transfer Learning", "width": 1}, {"arrows": "to", "from": "Deep Learning", "to": "Autoencoders", "width": 1}, {"arrows": "to", "from": "Deep Learning", "to": "Generative Adversarial Networks (GANs)", "width": 1}, {"arrows": "to", "from": "Deep Learning", "to": "Self-Supervised Learning", "width": 1}, {"arrows": "to", "from": "Supervised Learning", "to": "Classification", "width": 1}, {"arrows": "to", "from": "Supervised Learning", "to": "Regression", "width": 1}, {"arrows": "to", "from": "Unsupervised Learning", "to": "Clustering", "width": 1}, {"arrows": "to", "from": "Unsupervised Learning", "to": "Dimensionality Reduction", "width": 1}, {"arrows": "to", "from": "Neural Networks", "to": "Feedforward Neural Networks", "width": 1}, {"arrows": "to", "from": "Neural Networks", "to": "Backpropagation", "width": 1}, {"arrows": "to", "from": "Neural Networks", "to": "Activation Functions", "width": 1}, {"arrows": "to", "from": "Neural Networks", "to": "Loss Functions", "width": 1}, {"arrows": "to", "from": "Neural Networks", "to": "Convolutional Neural Networks (CNNs)", "width": 1}, {"arrows": "to", "from": "Neural Networks", "to": "Recurrent Neural Networks (RNNs)", "width": 1}, {"arrows": "to", "from": "Recurrent Neural Networks", "to": "LSTM", "width": 1}, {"arrows": "to", "from": "Recurrent Neural Networks", "to": "GRU", "width": 1}, {"arrows": "to", "from": "Convolutional Neural Networks", "to": "Pooling Layers", "width": 1}, {"arrows": "to", "from": "Convolutional Neural Networks", "to": "Convolutional Layers", "width": 1}, {"arrows": "to", "from": "Optimization Algorithms", "to": "Gradient Descent", "width": 1}, {"arrows": "to", "from": "Optimization Algorithms", "to": "Adam", "width": 1}, {"arrows": "to", "from": "Transfer Learning", "to": "Pre-trained Models", "width": 1}, {"arrows": "to", "from": "Autoencoders", "to": "Variational Autoencoders (VAEs)", "width": 1}, {"arrows": "to", "from": "Generative Adversarial Networks (GANs)", "to": "Discriminator", "width": 1}, {"arrows": "to", "from": "Generative Adversarial Networks (GANs)", "to": "Generator", "width": 1}, {"arrows": "to", "from": "Self-Supervised Learning", "to": "Contrastive Learning", "width": 1}, {"arrows": "to", "from": "Natural Language Processing", "to": "Tokenization", "width": 1}, {"arrows": "to", "from": "Natural Language Processing", "to": "Word Embeddings", "width": 1}, {"arrows": "to", "from": "Natural Language Processing", "to": "Word2Vec", "width": 1}, {"arrows": "to", "from": "Natural Language Processing", "to": "GloVe", "width": 1}, {"arrows": "to", "from": "Natural Language Processing", "to": "Transformers", "width": 1}, {"arrows": "to", "from": "Transformers", "to": "Attention Mechanism", "width": 1}, {"arrows": "to", "from": "Transformers", "to": "Self-Attention", "width": 1}, {"arrows": "to", "from": "Transformers", "to": "Multi-Head Attention", "width": 1}, {"arrows": "to", "from": "Transformers", "to": "Positional Encoding", "width": 1}, {"arrows": "to", "from": "Transformers", "to": "BERT", "width": 1}, {"arrows": "to", "from": "Transformers", "to": "GPT", "width": 1}, {"arrows": "to", "from": "Transformers", "to": "T5", "width": 1}, {"arrows": "to", "from": "Transformers", "to": "Vision Transformers (ViT)", "width": 1}, {"arrows": "to", "from": "BERT", "to": "Fine-Tuning", "width": 1}, {"arrows": "to", "from": "GPT", "to": "Language Models", "width": 1}, {"arrows": "to", "from": "Language Models", "to": "Large Language Models (LLMs)", "width": 1}, {"arrows": "to", "from": "Large Language Models (LLMs)", "to": "Scaling Laws", "width": 1}, {"arrows": "to", "from": "Large Language Models (LLMs)", "to": "Zero-Shot Learning", "width": 1}, {"arrows": "to", "from": "Large Language Models (LLMs)", "to": "Few-Shot Learning", "width": 1}, {"arrows": "to", "from": "Large Language Models (LLMs)", "to": "Prompt Engineering", "width": 1}, {"arrows": "to", "from": "Large Language Models (LLMs)", "to": "ChatGPT", "width": 1}, {"arrows": "to", "from": "Large Language Models (LLMs)", "to": "Multimodal Models", "width": 1}, {"arrows": "to", "from": "LLMs", "to": "Instruction Tuning", "width": 1}, {"arrows": "to", "from": "LLMs", "to": "Inference Techniques", "width": 1}, {"arrows": "to", "from": "Multimodal Models", "to": "CLIP", "width": 1}, {"arrows": "to", "from": "Multimodal Models", "to": "DALL-E", "width": 1}, {"arrows": "to", "from": "Multimodal Models", "to": "Visual Transformers", "width": 1}, {"arrows": "to", "from": "Multimodal Models", "to": "Audio Transformers", "width": 1}, {"arrows": "to", "from": "Multimodal Models", "to": "Text-to-Image Models", "width": 1}, {"arrows": "to", "from": "Multimodal Models", "to": "Text-to-Video Models", "width": 1}, {"arrows": "to", "from": "Multimodal Models", "to": "Text-to-Audio Models", "width": 1}, {"arrows": "to", "from": "Generative AI", "to": "Text Generation", "width": 1}, {"arrows": "to", "from": "Generative AI", "to": "Image Generation", "width": 1}, {"arrows": "to", "from": "Generative AI", "to": "Music Generation", "width": 1}, {"arrows": "to", "from": "Generative AI", "to": "Code Generation", "width": 1}, {"arrows": "to", "from": "Generative AI", "to": "Video Generation", "width": 1}, {"arrows": "to", "from": "Generative AI", "to": "Diffusion Models", "width": 1}, {"arrows": "to", "from": "Diffusion Models", "to": "Stable Diffusion", "width": 1}, {"arrows": "to", "from": "Diffusion Models", "to": "Denoising Process", "width": 1}, {"arrows": "to", "from": "Ethics in AI", "to": "AI Bias", "width": 1}, {"arrows": "to", "from": "Ethics in AI", "to": "Fairness in AI", "width": 1}, {"arrows": "to", "from": "Ethics in AI", "to": "Explainability", "width": 1}, {"arrows": "to", "from": "Ethics in AI", "to": "AI Regulations", "width": 1}]);
+
+                  nodeColors = {};
+                  allNodes = nodes.get({ returnType: "Object" });
+                  for (nodeId in allNodes) {
+                    nodeColors[nodeId] = allNodes[nodeId].color;
+                  }
+                  allEdges = edges.get({ returnType: "Object" });
+                  // adding nodes and edges to the graph
+                  data = {nodes: nodes, edges: edges};
+
+                  var options = {
+    "configure": {
+        "enabled": false
+    },
+    "edges": {
+        "color": {
+            "inherit": true
+        },
+        "smooth": {
+            "enabled": true,
+            "type": "dynamic"
+        }
+    },
+    "interaction": {
+        "dragNodes": true,
+        "hideEdgesOnDrag": false,
+        "hideNodesOnDrag": false
+    },
+    "physics": {
+        "enabled": true,
+        "stabilization": {
+            "enabled": true,
+            "fit": true,
+            "iterations": 1000,
+            "onlyDynamicEdges": false,
+            "updateInterval": 50
+        }
+    }
+};
+
+                  
+
+
+                  
+
+                  network = new vis.Network(container, data, options);
+
+                  
+
+                  
+
+                  
+
+
+                  
+
+                  return network;
+
+              }
+              drawGraph();
+        </script>
+    </body>
+</html>
