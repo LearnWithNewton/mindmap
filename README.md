@@ -116,3 +116,6 @@ where python  # Windows
 This should show the path to the Python executable inside your virtual environment.
 
 ---
+### Examples of the generated mind maps
+
+![mindmap](./download1.png)
